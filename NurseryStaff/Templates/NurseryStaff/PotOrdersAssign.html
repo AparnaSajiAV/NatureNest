@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Assigned Orders</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'Admin/vendors/feather/feather.css' %}">
+    <link rel="stylesheet" href="{% static 'Admin/vendors/ti-icons/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'Admin/vendors/css/vendor.bundle.base.css' %}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{% static 'Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+    <link rel="stylesheet" href="{% static 'Admin/vendors/ti-icons/css/themify-icons.css' %}">
+    <link rel="stylesheet" type="{% static 'Admin/text/css" href="js/select.dataTables.min.css' %}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'Admin/css/vertical-layout-light/style.css' %}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{% static 'Admin/images/favicon.png' %}" />
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <img src="{% static 'Admin/images/logo3.png' %}" class="mr-2" alt="logo" width="100%"/>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <butngton class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="icon-menu"></span>
+                </button>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="icon-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_settings-panel.html -->
+            <div class="theme-setting-wrapper">
+                <div id="settings-trigger"><i class="ti-settings"></i></div>
+                <div id="theme-settings" class="settings-panel">
+                <i class="settings-close ti-close"></i>
+                <p class="settings-heading">SIDEBAR SKINS</p>
+                <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+                <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+                <p class="settings-heading mt-2">HEADER SKINS</p>
+                <div class="color-tiles mx-0 px-4">
+                    <div class="tiles success"></div>
+                    <div class="tiles warning"></div>
+                    <div class="tiles danger"></div>
+                    <div class="tiles info"></div>
+                    <div class="tiles dark"></div>
+                    <div class="tiles default"></div>
+                </div>
+                </div>
+            </div>
+
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="container-fluid d-bg-image">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <table align="center" cellpadding="10">
+                                    <tr>
+                                        <th colspan="10" style="text-align: center;"><font size="5">Assign Orders</font></th>
+                                    </tr>
+                                    {% for i in data %}
+                                    <tr>
+                                        <th>Product</th>
+                                        <td>{{i.productpot.productpot_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quatity</th>
+                                        <td>{{i.order_qty}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Rate</th>
+                                        <td>{{i.productpot.productpot_rate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total Price</th>
+                                        <td>{{i.order_amount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>User</th>
+                                        <td>{{i.user.user_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Billing Address</th>
+                                        <td>
+                                            <table cellpadding="10">
+                                                <tr>
+                                                    {{i.user.user_address}}<br>
+                                                    {{i.user.place.place_name}}<br>
+                                                    {{i.user.place.district.district_name}}
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Delivery Address</th>
+                                        <td>
+                                            <table cellpadding="10">
+                                                <tr>
+                                                    {{i.order_address}}<br>
+                                                    {{i.user.place.place_name}}<br>
+                                                    {{i.user.place.district.district_name}}
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    <tr>
+                                        <th>Delivery Staff</th>
+                                        <td>
+                                            <select name="sel_staff" id="sel_staff" required>
+                                                <option value="">......Select......</option>
+                                                {% for i in staff %}
+                                                <option value="{{i.id}}">{{i.deliverystaff_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <center>
+                                                <input type="submit" name="txtsubmit" value="Submit">
+                                                <input type="reset" name="txtcancel" value="Cancel">
+                                            </center>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>      
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021. All rights reserved.</span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+                </div>
+                </footer> 
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>   
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    
+    <!-- plugins:js -->
+    <script src="{% static 'Admin/vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{% static 'Admin/vendors/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'Admin/vendors/datatables.net/jquery.dataTables.j' %}s"></script>
+    <script src="{% static 'Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+    <script src="{% static 'Admin/js/dataTables.select.min.js' %}"></script>
+    
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'Admin/js/off-canvas.js' %}"></script>
+    <script src="{% static 'Admin/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'Admin/js/template.js' %}"></script>
+    <script src="{% static 'Admin/js/settings.js' %}"></script>
+    <script src="{% static 'Admin/js/todolist.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="{% static 'Admin/js/dashboard.js' %}"></script>
+    <script src="{% static 'Admin/js/Chart.roundedBarCharts.js' %}"></script>
+    <!-- End custom js for this page-->
+
+</body>
+</html>

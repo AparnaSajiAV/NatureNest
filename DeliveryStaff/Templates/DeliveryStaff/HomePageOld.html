@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <table cellpadding="10">
+        <tr>
+            <td><a href="{% url 'DeliveryStaff:myprofile' %}">Profile</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'DeliveryStaff:confirmedorderSelect' %}">Confirmed Orders</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'DeliveryStaff:deliveredorderSelect' %}">Delivered Orders</a></td>
+        </tr>
+    </table>  
+</body>
+</html>

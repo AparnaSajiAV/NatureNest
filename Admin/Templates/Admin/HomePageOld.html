@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <table cellpadding="10">
+        <tr>
+            <td><a href="{% url 'WebAdmin:myprofile' %}">Profile</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:adminInsert' %}">Admin Registration</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:adminSelect' %}">Admin Registration List</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:nurserystaffInsert' %}">Nursery Staff Registration</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:nurserystaffSelect' %}">Nursery Staff List</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:deliverystaffInsert' %}">Delivery Staff Registration</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:deliverystaffSelect' %}">Delivery Staff List</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:userlist' %}">Customers List</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:districtInsertSelect' %}">District</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:placeInsertSelect' %}">Place</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:categoryInsertSelect' %}">Plant Category</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:subcategoryInsertSelect' %}">Plants Subcategory</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:typepotInsertSelect' %}">Planters Type</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:shapepotInsertSelect' %}">Planters Shape</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:materialpotInsertSelect' %}">Planters Material</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:sizepotInsertSelect' %}">Planters Size</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:colorpotInsertSelect' %}">Planters Color</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:complaintSelect' %}">New Complaints</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:complaintsolvedSelect' %}">Solved Complaint</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'WebAdmin:feedbackSelect' %}">View Feedback</a></td>
+        </tr>
+    </table>
+</body>
+</html>

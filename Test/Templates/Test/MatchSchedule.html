@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Schedule</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table align="center" cellpadding="10">
+            <tr>
+                <th colspan="2"><font size="5">Match Schedule</font></th>
+            </tr>
+            <tr>
+                <th>Schedule Name</th>
+                <td><input type="text" name="txtname" id="" required placeholder="Enter schedule name"></td>
+            </tr>
+            <tr>
+                <th>From Date</th>
+                <td><input type="date" name="txtfrom" id="" required placeholder="Enter from date" style="width: 173px;"></td>
+            </tr>
+            <tr>
+                <th>Due Date</th>
+                <td><input type="date" name="txtdue" id="" required placeholder="Enter due date" style="width: 173px;"></td>
+            </tr>
+            <tr>
+                <th>Venue Name</th>
+                <td><input type="text" name="txtvenue" id="" required placeholder="Enter venue name"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center>
+                        <input type="submit" name="txtsubmit" value="Submit">
+                        <input type="reset" name="txtcancel" value="Cancel">
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table border="1" align="center" cellpadding="10" width="50%"  style="text-align: center;">
+        <tr>
+            <th>Sl.No</th>
+            <th>Schedule Name</th>
+            <th>From Date</th>
+            <th>Due Date</th>
+            <th>Venue Name</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.schedule_name}}</td> 
+            <td>{{i.schedule_fromdate}}</td>
+            <td>{{i.schedule_duedate}}</td>
+            <td>{{i.schedule_venue}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

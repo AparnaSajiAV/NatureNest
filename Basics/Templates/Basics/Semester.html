@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semester</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table align="center" cellpadding="10">
+            <tr>
+                <th colspan="2"><font size="5">Semester</font></th>
+            </tr>
+            <tr>
+                <th>Semester</th>
+                <td><input type="text" name="txtsemno" value="{{editdata.semester_no}}" required placeholder="Enter semester number"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center>
+                        <input type="submit" name="Submit" value="Submit">
+                        <input type="reset" name="Cancel" value="Cancel">
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table align="center" cellpadding="10" border="1">
+        <tr>
+            <th>Sl.No</th>
+            <th>Semester Number</th>
+            <th>Action</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <th>{{forloop.counter}}</th>
+            <th>{{i.semester_no}}</th>
+            <th>
+                <a href="{% url 'WebBasics:semesterDelete' i.id %}">Delete</a> |
+                <a href="{% url 'WebBasics:semesterUpdate' i.id %}">Edit</a>
+            </th>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

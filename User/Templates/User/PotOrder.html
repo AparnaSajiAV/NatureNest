@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Order</title>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="{% static 'User/images/fevicon.png' %}" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{% static 'User/css/bootstrap.min.css' %}" />
+    <!-- site css -->
+    <link rel="stylesheet" href="{% static 'User/style.css' %}" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{% static 'User/css/responsive.css' %}" />
+    <!-- color css -->
+    <link rel="stylesheet" href="{% static 'User/css/colors.css' %}" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="{% static 'User/css/bootstrap-select.css' %}" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="{% static 'User/css/perfect-scrollbar.css' %}" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="{% static 'User/css/custom.css' %}" />
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <a href="{% url 'User:homepage' %}">Home</a>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table align="center" cellpadding="10">
+            {% for i in data %}
+            <tr>
+                <th colspan="3"><font size="5">Order Now</font></th>
+            </tr>
+            <tr>
+                <td rowspan="14"><img src="{{i.productpot_image.url}}" width="250" height="250" alt=""></td>
+            </tr>
+            <tr>
+                <th>Pot Name</th>
+                <td>{{i.productpot_name}}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{i.type.type_name}}</td>
+            </tr>
+            <tr>
+                <th>Size</th>
+                <td>{{i.size.size_name}}</td>
+            </tr>
+            <tr>
+                <th>Shape</th>
+                <td>{{i.shape.shape_name}}</td>
+            </tr>
+            <tr>
+                <th>Material</th>
+                <td>{{i.material.material_name}}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{i.color.color_name}}</td>
+            </tr>
+            <tr>
+                <th>Rate</th>
+                <td>{{i.productpot_rate}}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{i.productpot_description}}</td>
+            </tr>
+            <tr>
+                <th>Quatity</th>
+                <td><input type="text" name="qty" autofocus pattern="[1-9][0-9]{0,3}" title="Please enter only digits." placeholder="Enter quatity" required="required" id="" class="textbox"></td>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <center>
+                        <input type="submit" name="txtsubmit" value="Submit">
+                        <input type="reset" name="txtcancel" value="Cancel">
+                    </center>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_district").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'WebGuest:ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_place").html(data);
+            },
+        });
+    });
+</script>

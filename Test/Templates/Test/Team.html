@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table align="center" cellpadding="10">
+            <tr>
+                <th colspan="2"><font size="5">Team</font></th>
+            </tr>
+            <tr>
+                <th>Team Name</th>
+                <td><input type="text" name="txtteam" id="" required placeholder="Enter team name"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center>
+                        <input type="submit" name="txtsubmit" value="Submit">
+                        <input type="reset" name="txtcancel" value="Cancel">
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table border="1" align="center" cellpadding="10" width="50%"  style="text-align: center;">
+        <tr>
+            <th>Sl.No</th>
+            <th>Team Name</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.team_name}}</td> 
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Eleven</title>
+</head>
+<body>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center" cellpadding="10">
+            <tr>
+                <th colspan="2"><font size="5">Player Eleven</font></th>
+            </tr>
+            <tr>
+                <th>Schedule Name</th>
+                <td>
+                    <select name="sel_schedule" id="sel_schedule" style="width: 175px;">
+                        <option value="">......Select......</option>
+                        {% for i in schedule %}
+                        <option value="{{i.id}}">{{i.schedule_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Team Name</th>
+                <td>
+                    <select name="sel_team" id="sel_team" style="width: 175px;">
+                        <option value="">......Select......</option>
+                        {% for i in team %}
+                        <option value="{{i.id}}">{{i.team_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Player Name</th>
+                <td>
+                    <select name="sel_player" id="sel_player" style="width: 175px;">
+                        <option value="">......Select......</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center>
+                        <input type="submit" name="txtsubmit" value="Submit">
+                        <input type="reset" name="txtcancel" value="Cancel">
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table border="1" align="center" cellpadding="10" width="50%"  style="text-align: center;">
+        <tr>
+            <th>Sl.No</th>
+            <th>Schedule Name</th>
+            <th>Team Name</th>
+            <th>Player Name</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.schedule.schedule_name}}</td>
+            <td>{{i.player.team.team_name}}</td>
+            <td>{{i.player.player_name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_team").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'WebTest:ajaxplayer' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_player").html(data);
+            },
+        });
+    });
+</script>

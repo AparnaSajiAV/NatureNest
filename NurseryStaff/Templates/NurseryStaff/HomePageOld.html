@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <table cellpadding="10">
+        <tr>
+            <td><a href="{% url 'NurseryStaff:myprofile' %}">Profile</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'NurseryStaff:productplantInsert' %}">Product Plant</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'NurseryStaff:productplantSelect' %}">Plants View</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'NurseryStaff:galleryplantInsertSelect' %}">Plants Gallery</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'NurseryStaff:productpotInsert' %}">Product Pot</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'NurseryStaff:productpotSelect' %}">Pots View</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'NurseryStaff:gallerypotInsertSelect' %}">Pots Gallery</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'NurseryStaff:newplantorderSelect' %}">New Plant Orders</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'NurseryStaff:neworderSelect' %}">New Orders</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'NurseryStaff:confirmedorderSelect' %}">Confirmed Orders</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'NurseryStaff:deliveredorderSelect' %}">Delivered Orders</a></td>
+        </tr>
+    </table>  
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Pot</title>
+</head>
+<body>
+    <a href="{% url 'User:productpotSelect' %}">Go Back</a>
+    <table align="center" cellpadding="5" style="text-align: center;">
+        {% for i in data %}
+        <tr><th><font size="6">{{i.productpot_name}}</font></th></tr>
+        <tr>
+            <td>
+                <a href="{{i.productpot_image.url}}">
+                    <img src="{{i.productpot_image.url}}" width="250" height="250" alt="">
+                </a>
+                {% for j in gallery %}
+                <a href="{{j.gallerypot_file.url}}">
+                    <img src="{{j.gallerypot_file.url}}" width="250" height="250" alt="">
+                </a>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>Rate: {{i.productpot_rate}}</td>
+        </tr>
+        <tr>
+            <td>{{i.productpot_description}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

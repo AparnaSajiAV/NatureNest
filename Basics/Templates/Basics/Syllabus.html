@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syllabus</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table align="center" cellpadding="10">
+            <tr>
+                <th colspan="2"><font size="5">Syllabus</font></th>
+            </tr>
+            <tr>
+                <th>Course</th>
+                <td>
+                    <select name="sel_course" id="sel_course">
+                        <option value="">......Select......</option>
+                        {% for i in coursedata %}
+                        <option {% if i.id == editdata.course_id %} selected {% endif %} value="{{i.id}}">{{i.course_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Subject</th>
+                <td>
+                    <select name="sel_subject" id="sel_subject">
+                        <option value="">......Select......</option>
+                        {% for i in subjectdata %}
+                        <option {% if i.id == editdata.subject_id %} selected {% endif %} value="{{i.id}}">{{i.subject_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Semester</th>
+                <td>
+                    <select name="sel_semester" id="sel_semester">
+                        <option value="">......Select......</option>
+                        {% for i in semesterdata %}
+                        <option {% if i.id == editdata.semester_id %} selected {% endif %} value="{{i.id}}">{{i.semester_no}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center>
+                        <input type="submit" name="Submit" value="Submit">
+                        <input type="reset" name="Cancel" value="Cancel">
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table align="center" cellpadding="10" border="1">
+        <tr>
+            <th>Sl.No</th>
+            <th>Course</th>
+            <th>Subject</th>
+            <th>Semester</th>
+            <th>Action</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <th>{{forloop.counter}}</th>
+            <th>{{i.course.course_name}}</th>
+            <th>{{i.subject.subject_name}}</th>
+            <th>{{i.semester.semester_no}}</th>
+            <th>
+                <a href="{% url 'WebBasics:syllabusDelete' i.id %}">Delete</a> |
+                <a href="{% url 'WebBasics:syllabusUpdate' i.id %}">Edit</a>
+            </th>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

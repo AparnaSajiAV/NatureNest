@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+</head>
+<body>
+    <div class="container-fluid d-bg-image">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="d-profile">
+            <table class="d-card" style="color: black;" align="center" cellpadding="10px">
+                <tr>
+                    <th colspan="2"><font size="5">Edit Profile</font></th>
+                </tr>
+                <tr> 
+                    <th>Name</th>
+                    <td><input type="text" class="textbox" name="txtname" id="" value="{{prodata.user_name}}"></td>
+                </tr>
+                <tr>
+                    <th>Contact</th>
+                    <td><input type="text" name="txtcon" pattern="[0-9]{10}" class="textbox" id="" value="{{prodata.user_contact}}"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><input type="email" name="txtemail" class="textbox" id="" value="{{prodata.user_email}}"></td>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td><input type="text" name="txtaddress" class="textbox" id="" value="{{prodata.user_address}}"></td>
+                </tr>
+                <tr>
+                    <th>District</th>
+                    <td>
+                        <select name="sel_district" id="sel_district" style="width: 175px;">
+                            <option value="">......Select......</option>
+                            {% for i in districtdata %}
+                            <option {% if i.id == prodata.place.district_id %} selected {% endif %} value="{{i.id}}">{{i.district_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Place</th>
+                    <td>
+                        <select name="sel_place" id="sel_place" style="width: 175px;">
+                            <option {% if i.id == prodata.place.place_id %} selected {% endif %} value="">......Select......</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input class="d-card-button" type="submit" value="Update" name="btnsub"></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    </div>
+    {% if msg %}
+    <script>
+        alert("{{msg}}")
+        window.location = "{% url 'User:myprofile' %}"
+    </script>
+    {% endif %}
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_district").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'WebGuest:ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_place").html(data);
+            },
+        });
+    });
+</script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gallery Plant</title>
+    
+</head>
+<body>
+    <a href="{% url 'User:productplantSelect' %}">Go Back</a>
+    <table align="center" cellpadding="5" style="text-align: center;">
+        {% for i in data %}
+        <tr><th><font size="6">{{i.productplant_name}}</font></th></tr>
+        <tr>
+            <td>
+                <a href="{{i.productplant_image.url}}">
+                    <img src="{{i.productplant_image.url}}" width="250" height="250" alt="">
+                </a>
+                {% for j in gallery %}
+                <a href="{{j.galleryplant_file.url}}">
+                    <img src="{{j.galleryplant_file.url}}" width="250" height="250" alt="">
+                </a>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>Rate: {{i.productplant_rate}}</td>
+        </tr>
+        <tr>
+            <td>{{i.productplant_description}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Slip</title>
+</head>
+<body>
+    <form action="" name="frmsal" method="POST">
+        {% csrf_token %}
+        <table align="center" cellpadding="10">
+            <tr>
+                <th colspan="2"><font size="5">Salary Slip</font></th>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="txtfirstname" required placeholder="Enter first name"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="txtlastname" required placeholder="Enter last name"></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" name="rdogender" value="Male" checked>Male
+                    <input type="radio" name="rdogender" value="Female">Female
+                </td>
+            </tr>
+            <tr>
+                <td>Date of Birth</td>
+                <td><input type="date" name="txtdob" required></td>
+            </tr>
+            <tr>
+                <td>Date of Join</td>
+                <td><input type="date" name="txtdoj" required></td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td>
+                    <select name="ddndept" required>
+                        <option value="Sales">Sales</option>
+                        <option value="HR">HR</option>
+                        <option value="Finance">Finance</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Basic Salary</td>
+                <td><input type="text" name="txtbs" required placeholder="Enter basic salary"></td>
+            </tr>
+            
+            <tr>
+                <td colspan="2">
+                    <center>
+                        <input type="submit" name="Submit" value="Submit">
+                        <input type="reset" name="Cancel" value="Cancel">
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table align="center" cellpadding="10">
+        <tr>
+            <td>Name</td>
+            <td>{{name}}</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>{{gender}}</td>
+        </tr>
+        <tr>
+            <td>Department</td>
+            <td>{{dept}}</td>
+        </tr>
+        <tr>
+            <td>TA</td>
+            <td>{{ta}}</td>
+        </tr>
+        <tr>
+            <td>DA</td>
+            <td>{{da}}</td>
+        </tr>
+        <tr>
+            <td>HRA</td>
+            <td>{{hra}}</td>
+        </tr>
+        <tr>
+            <td>LIC</td>
+            <td>{{lic}}</td>
+        </tr>
+        <tr>
+            <td>PF</td>
+            <td>{{pf}}</td>
+        </tr>
+        <tr>
+            <td>Net Salary</td>
+            <td>{{netsal}}</td>
+        </tr>
+    </table>
+</body>
+</html>

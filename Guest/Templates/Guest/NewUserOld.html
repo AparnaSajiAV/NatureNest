@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New User Reg</title>
+</head>
+<body>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center" cellpadding="10">
+            <tr>
+                <th colspan="2"><font size="5">User Registration</font></th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td><input type="text" name="txtname" required placeholder="Enter name" autofocus></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td><input type="text" name="txtaddress" required placeholder="Enter address"></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>
+                    <select name="sel_district" id="sel_district" style="width: 175px;">
+                        <option value="">......Select......</option>
+                        {% for i in districtdata %}
+                        <option value="{{i.id}}">{{i.district_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td>
+                    <select name="sel_place" id="sel_place" style="width: 175px;">
+                        <option value="">......Select......</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>
+                    <input type="radio" name="txtgender" value="Male" required>Male
+                    <input type="radio" name="txtgender" value="Female">Female
+                    <input type="radio" name="txtgender" value="Others">Others
+                </td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td><input type="text" name="txtcont" pattern="[0-9]{10}" placeholder="Enter contact"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="email" name="txtemail" placeholder="Enter email"></td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td><input type="password" name="txtpass" placeholder="Enter password"></td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td><input type="file" name="fileimg" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center>
+                        <input type="submit" name="txtsubmit" value="Submit">
+                        <input type="reset" name="txtcancel" value="Cancel">
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_district").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'WebGuest:ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_place").html(data);
+            },
+        });
+    });
+</script>

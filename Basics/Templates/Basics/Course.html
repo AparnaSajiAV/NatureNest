@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table align="center" cellpadding="10">
+            <tr>
+                <th colspan="2"><font size="5">Course</font></th>
+            </tr>
+            <tr>
+                <th>Department</th>
+                <td>
+                    <select name="sel_dept" id="sel_dept">
+                        <option value="">......Select......</option>
+                        {% for i in deptdata %}
+                        <option {% if i.id == editdata.dept_id %} selected {% endif %} value="{{i.id}}">
+                            {{i.dept_name}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Course</th>
+                <td><input type="text" name="txtcourse" placeholder="Enter course" required value="{{editdata.course_name}}"></td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td><input type="text" name="txtdue" placeholder="Enter duration" required value="{{editdata.course_duration}}"></td>
+            </tr>
+            <tr>
+                <th>Semster</th>
+                <td><input type="text" name="txtsemno" placeholder="Enter number of semster" required value="{{editdata.course_semno}}"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center>
+                        <input type="submit" name="Submit" value="Submit">
+                        <input type="reset" name="Cancel" value="Cancel">
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table align="center" cellpadding="10" border="1">
+        <tr>
+            <th>Sl.No</th>
+            <th>Department</th>
+            <th>Course Name</th>
+            <th>Duration</th>
+            <th>Semster</th>
+            <th>Action</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.dept.dept_name}}</td>
+            <td>{{i.course_name}}</td>
+            <td>{{i.course_duration}}</td>
+            <td>{{i.course_semno}}</td>
+            <td>
+                <a href="{% url 'WebBasics:courseDelete' i.id %}">Delete</a> |
+                <a href="{% url 'WebBasics:courseUpdate' i.id %}">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

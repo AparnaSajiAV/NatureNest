@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Players</title>
+</head>
+<body>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center" cellpadding="10">
+            <tr>
+                <th colspan="2"><font size="5">Player</font></th>
+            </tr>
+            <tr>
+                <th>Player Name</th>
+                <td><input type="text" name="txtplayer" id="" required placeholder="Enter player name"></td>
+            </tr>
+            <tr>
+                <th>Team</th>
+                <td>
+                    <select name="sel_team" id="sel_team" style="width: 175px;">
+                        <option value="">......Select......</option>
+                        {% for i in team %}
+                        <option value="{{i.id}}">{{i.team_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <td>
+                    <select name="sel_position" id="sel_position" style="width: 175px;">
+                        <option value="">......Select......</option>
+                        {% for i in position %}
+                        <option value="{{i.id}}">{{i.position_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td><input type="file" name="fileimg" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center>
+                        <input type="submit" name="txtsubmit" value="Submit">
+                        <input type="reset" name="txtcancel" value="Cancel">
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table border="1" align="center" cellpadding="10" width="50%"  style="text-align: center;">
+        <tr>
+            <th>Sl.No</th>
+            <th>Player Name</th>
+            <th>Team Name</th>
+            <th>Player Position</th>
+            <th>Photo</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.player_name}}</td>
+            <td>{{i.team.team_name}}</td>
+            <td>{{i.position.position_name}}</td>
+            <td><img src="{{i.player_image.url}}" width="100" height="100" alt=""></td> 
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

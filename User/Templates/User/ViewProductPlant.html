@@ -1,0 +1,306 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>View Product Plant</title>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="{% static 'User/images/fevicon.png' %}" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="{% static 'User/css/bootstrap.min.css' %}" />
+    <!-- site css -->
+    <link rel="stylesheet" href="{% static 'User/style.css' %}" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{% static 'User/css/responsive.css' %}" />
+    <!-- color css -->
+    <link rel="stylesheet" href="{% static 'User/css/colors.css' %}" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="{% static 'User/css/bootstrap-select.css' %}" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="{% static 'User/css/perfect-scrollbar.css' %}" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="{% static 'User/css/custom.css' %}" />
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'Main/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/css/all.min.css' %}">
+    <style>
+        .product {
+            border: 1px solid #ddd; /* Border for each product */
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .product img {
+            display: block;
+            margin: 0 auto; /* Center the image */
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between; /* Distribute actions evenly */
+            margin-top: 10px;
+        }
+        /* Add spacing between form inputs */
+        th, td {
+            padding: 10px; /* Adjust padding for spacing */
+        }
+
+        select, input[type="submit"], input[type="reset"] {
+            margin-top: 5px; /* Add margin for spacing between inputs */
+        }
+
+        .center-align {
+            text-align: center; /* Center-align content */
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_2">
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a href="{% url 'User:homepage' %}"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                            
+                        </li>
+                        <li>
+                            <a href="#widgets" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clock-o orange_color"></i> <span>Products</span></a>
+                            <ul class="collapse list-unstyled" id="widgets">
+                                <li>
+                                    <a href="{% url 'User:productplantSelect' %}">> <span>Plants View</span></a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'User:productpotSelect' %}">> <span>Planters View</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-diamond purple_color"></i> <span>Wishlist</span></a>
+                            <ul class="collapse list-unstyled" id="element">
+                                <li><a href="{% url 'User:wishlistplantSelect' %}">> <span>Plants Wishlist</span></a></li>
+                                <li><a href="{% url 'User:wishlistpotSelect' %}">> <span>Planters Wishlist</span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-table purple_color2"></i> <span>Cart</span></a>
+                            <ul class="collapse list-unstyled" id="tables">
+                                <li><a href="{% url 'User:mycartSelect' %}">> <span>Plants Cart</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="active">
+                            <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Orders</span></a>
+                            <ul class="collapse list-unstyled" id="additional_page">
+                                <li>
+                                    <a href="{% url 'User:productplantorderSelect' %}">> <span>Plants Orders</span></a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'User:productorderSelect' %}">> <span>Planters Orders</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Complaints</span></a>
+                            <ul class="collapse list-unstyled" id="apps">
+                                <li><a href="{% url 'User:complaintInsert' %}">> <span>Post Complaint</span></a></li>
+                                <li><a href="{% url 'User:complaintSelect' %}">> <span>Complaint List</span></a></li>
+                            </ul>
+                        </li>                      
+                        <li>
+                            <a href="#contact" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-paper-plane red_color"></i> <span>Account</span></a>
+                            <ul class="collapse list-unstyled" id="contact">
+                                <li><a href="{% url 'User:myprofile' %}">> <span>My Profile</span></a></li>
+                            </ul>
+                        </li>
+                        <!--
+                        <li>
+                            <a href="#price" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-briefcase blue1_color"></i> <span>Feedback</span></a>
+                            <ul class="collapse list-unstyled" id="price">
+                                <li><a href="">> <span>Feedback List</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Map</span></a></li>
+                        <li>
+                            <a href="#charts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-bar-chart-o green_color"></i> <span>Account</span></a>
+                            <ul class="collapse list-unstyled" id="charts">
+                                <li><a href="">> <span>My Profile</span></a></li>
+                            </ul>
+                        </li>
+                    -->
+                        <li><a href="{% url 'User:logout_view' %}"><i class="fa fa-cog yellow_color"></i> <span>Logout</span></a></li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+            <!-- topbar -->
+            <div class="topbar">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="full">
+                        <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                        <div class="logo_section">
+                            <img class="img-responsive" src="{% static 'User/images/logo/logo1.png' %}" alt="#" />
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <!-- end topbar -->
+            <!-- dashboard inner -->
+            <div class="midde_cont">
+                <div class="container-fluid">
+                    <div class="row column_title">
+                        <div class="col-md-12">
+                            <div class="page_title">
+                                <h1 style="text-align: center;">Plant Products</h1>
+                             </div>
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <table align="center" cellpadding="10">
+                                    <tr>
+                                        <th>Category</th>
+                                        <td>
+                                            <select name="sel_category" id="sel_category" required>
+                                                <option value="">......Select......</option>
+                                                {% for i in categorydata %}
+                                                <option value="{{i.id}}">{{i.category_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </td>
+                                        <th>Subcategory</th>
+                                        <td>
+                                            <select name="sel_subcategory" id="sel_subcategory">
+                                                <option value="">......Select......</option>
+                                            </select>
+                                        </td>
+                                        <td colspan="2">
+                                            <center>
+                                                <input type="submit" name="txtsubmit" value="Submit">
+                                                <input type="reset" name="txtcancel" value="Cancel">
+                                            </center>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                            <br>
+                            <div class="row">
+                                {% for i,a in data %}
+                                <div class="col-md-4">
+                                    <div class="product" style="border: 1px solid #ffffff; background-color: #ffffff; padding: 15px;">
+                                        <a href="{% url 'User:galleryplantSelect' i.id %}">
+                                            <img src="{{ i.productplant_image.url }}" width="250" height="250" alt="">
+                                        </a>
+                                        <h4 style="text-align: center;">{{ i.productplant_name }}</h4>
+                                        <p style="text-align: center;">{{ i.productplant_rate }}</p>
+                                        <p>
+                                            {% for k in ar %}
+                                                {% if k <= a %}
+                                                    <i class="fas fa-star text-warning"></i>
+                                                {% else %}
+                                                    <i class="fas fa-star star-light mr-1 main_star"></i>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </p>
+                                        <div class="actions" style="display: flex; justify-content: space-between; align-items: center;">
+                                            <a href="{% url 'User:wishlistplantInsert' i.id %}">Wishlist</a>
+                                            {% if i.stock > 0 %}
+                                            <a href="{% url 'User:productbook' i.id %}">Add to Cart</a>
+                                            {% else %}
+                                            <span>Out of Stock</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            
+                            {% if msg %}
+                            <script>
+                                alert("{{msg}}")
+                                window.location = "{% url 'User:productplantSelect' %}"
+                            </script>
+                            {% endif %}
+
+                            {% if messages %}
+                            <div class="alert alert-info text-center" role="alert">
+                                {% for message in messages %}
+                                    <strong><h1>{{ message }}</h1></strong>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+                <!-- footer -->
+                <div class="container-fluid">
+                    <div class="footer">
+                        <p>Copyright © 2018 Designed by html.design. All rights reserved.<br><br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- end dashboard inner -->
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="{% static 'User/js/jquery.min.js' %}"></script>
+    <script src="{% static 'User/js/popper.min.js' %}"></script>
+    <script src="{% static 'User/js/bootstrap.min.js' %}"></script>
+    <!-- wow animation -->
+    <script src="{% static 'User/js/animate.js' %}"></script>
+    <!-- select country -->
+    <script src="{% static 'User/js/bootstrap-select.js' %}"></script>
+    <!-- owl carousel -->
+    <script src="{% static 'User/js/owl.carousel.js' %}"></script> 
+    <!-- chart js -->
+    <script src="{% static 'User/js/Chart.min.js' %}"></script>
+    <script src="{% static 'User/js/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'User/js/utils.js' %}"></script>
+    <script src="{% static 'User/js/analyser.js' %}"></script>
+    <!-- nice scrollbar -->
+    <script src="{% static 'User/js/perfect-scrollbar.min.js' %}"></script>
+    <script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>
+    <!-- custom js -->
+    <script src="{% static 'User/js/custom.js' %}"></script>
+    <script src="{% static 'User/js/chart_custom_style1.js' %}"></script>
+    
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_category").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'NurseryStaff:ajaxsubcategory' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#sel_subcategory").html(data);
+            },
+        });
+    });
+</script>

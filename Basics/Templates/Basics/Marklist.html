@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marklist</title>
+</head>
+<body>
+    <form action="" name="frmmrk" method="POST">
+        {% csrf_token %}
+        <table align="center" cellpadding="10">
+            <tr>
+                <th colspan="2"><font size="5">Marklist</font></th>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td><input type="text" name="txtfirstname" required placeholder="Enter first name"></td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td><input type="text" name="txtlastname" required placeholder="Enter last name"></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" name="rdogender" value="Male" checked>Male
+                    <input type="radio" name="rdogender" value="Female">Female
+                </td>
+            </tr>
+            <tr>
+                <td>Department</td>
+                <td>
+                    <select name="ddndept" required>
+                        <option value="MCA">MCA</option>
+                        <option value="MBA">MBA</option>
+                        <option value="MCom">MCom</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Mark 1</td>
+                <td><input type="text" name="txtm1" required placeholder="Enter mark 1"></td>
+            </tr>
+            <tr>
+                <td>Mark 2</td>
+                <td><input type="text" name="txtm2" required placeholder="Enter mark 2"></td>
+            </tr>
+            <tr>
+                <td>Mark 3</td>
+                <td><input type="text" name="txtm3" required placeholder="Enter mark 3"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <center>
+                        <input type="submit" name="Submit" value="Submit">
+                        <input type="reset" name="Cancel" value="Cancel">
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table align="center" cellpadding="10">
+        <tr>
+            <td>Name</td>
+            <td>{{name}}</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>{{gender}}</td>
+        </tr>
+        <tr>
+            <td>Department</td>
+            <td>{{dept}}</td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td>{{res1}}</td>
+        </tr>
+        <tr>
+            <td>Percentage</td>
+            <td>{{res2}}</td>
+        </tr>
+        <tr>
+            <td>Grade</td>
+            <td>{{res3}}</td>
+        </tr>
+    </table>
+</body>
+</html>
